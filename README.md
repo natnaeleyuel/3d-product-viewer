@@ -1,8 +1,8 @@
 
 # 🪑 3D Product Viewer - Interactive Chair Configurator
 
-![Screenshot of the 3D chair viewer](![image](https://github.com/user-attachments/assets/56de5b3d-4a31-4c8f-aa8d-5062c37c917e)
-)
+## 📸 Preview
+![Screenshot of the 3D chair viewer](![image](https://github.com/user-attachments/assets/370a2c53-073d-4067-a97d-d0287479ed0c)
 
 A responsive Three.js application that demonstrates interactive 3D product visualization using basic geometries. Built as part of a computer graphics assignment.
 
