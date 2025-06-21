@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic meta tags for character set and responsive viewport -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Product Viewer</title>
+  
+  <!-- External CSS dependencies -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/loading.css"> <!-- Loading animation styles -->
+  <link rel="stylesheet" href="styles/style.css"> <!-- Main stylesheet -->
+</head>
+<body>
+  <!-- Main container for all content -->
+  <div class="container">
+    <!-- 3D viewer section -->
+    <section class="viewer-section">
+      <div class="viewer-header">
+        <h1>3D Product Viewer</h1>
+        <!-- Viewer control buttons -->
+        <div class="viewer-controls">
+          <button class="control-btn" id="rotate-toggle" title="Toggle Auto-Rotation">
+            <i class="fas fa-sync-alt"></i> <!-- Rotation icon -->
+          </button>
+          <button class="control-btn" id="reset-view" title="Reset View">
+            <i class="fas fa-home"></i> <!-- Reset view icon -->
+          </button>
+          <button class="control-btn" id="fullscreen" title="Fullscreen">
+            <i class="fas fa-expand"></i> <!-- Fullscreen icon -->
+          </button>
+        </div>
+      </div>
+      
+      <!-- Canvas container for 3D rendering -->
+      <div class="viewer-container">
+        <canvas id="productCanvas"></canvas> <!-- 3D rendering surface -->
+        
+        <!-- Loading overlay shown while model loads -->
+        <div class="loading-overlay" id="loadingOverlay">
+          <div class="loading-content">
+            <div class="spinner"></div> <!-- Animated spinner -->
+            <p>Loading 3D Model...</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Panel to display information about selected parts -->
+      <div class="selected-part-info" id="selectedPartInfo">
+          <h4 id="partName">Clicked Part</h4>
+          <p id="partDescription">Click on any part of the chair to see details</p>
+      </div>
+    </section>
+    
+    <!-- Right-side product information panel -->
+    <section class="info-panel">
+      <div class="product-header">
+        <h2 class="product-title" id="productTitle">Modern Chair</h2>
+        <p class="product-subtitle">Ergonomic Design | Premium Materials</p>
+        <div class="product-price">$49.99</div>
+        
+        <!-- Product action buttons -->
+        <div class="product-actions">
+          <button class="btn btn-primary">Add to Cart</button>
+          <button class="btn btn-outline">Save for Later</button>
+        </div>
+      </div>
+      
+      <!-- Detailed product information sections -->
+      <div class="product-details">
+        <h3 class="section-title">Product Features</h3>
+        <ul class="feature-list">
+          <li><i class="fas fa-check"></i>&nbsp; High-quality materials for durability</li>
+          <li><i class="fas fa-check"></i>&nbsp; Ergonomic design for maximum comfort</li>
+          <li><i class="fas fa-check"></i>&nbsp; Easy to assemble with included tools</li>
+          <li><i class="fas fa-check"></i>&nbsp; Environmentally friendly production</li>
+          <li><i class="fas fa-check"></i>&nbsp; 1-year manufacturer warranty</li>
+        </ul>
+        
+        <h3 class="section-title">Specifications</h3>
+        <ul class="feature-list">
+          <li><i class="fas fa-ruler"></i>&nbsp; Dimensions: 86cm x 86cm x 106cm</li>
+          <li><i class="fas fa-weight"></i>&nbsp; Weight: 22 lbs (10 kg)</li>
+          <li><i class="fas fa-palette"></i>&nbsp; Colors: Brown, Black, White</li>
+          <li><i class="fas fa-box-open"></i>&nbsp; Includes: Chair, Care Instructions</li>
+        </ul>
+
+        <h3 class="section-title">Customer Reviews</h3>
+        <div class="review-list">
+          <div class="review-item">
+            <div class="review-header">
+              <span class="reviewer-name">Alice Johnson</span>
+              <span class="review-rating">★★★★☆</span> <!-- Star rating -->
+            </div>
+            <p class="review-text">Absolutely love this chair! It's so comfortable and looks great in my living room.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script> <!-- Three.js 3D library -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script> <!-- Camera controls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script> <!-- Font Awesome icons -->
+  <script type="module" src="scripts/main.js"></script> <!-- Main application script -->
+</body>
+</html>

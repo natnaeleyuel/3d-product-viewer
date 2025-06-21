@@ -1,0 +1,242 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --dark-color: #2c3e50;
+  --light-color: #ecf0f1;
+  --highlight-color: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  height: 100vh;
+  width: 100vw; 
+  overflow: hidden; 
+}
+
+.viewer-section {
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+}
+
+.info-panel {
+  background-color: white;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 350px; 
+  z-index: 10; 
+}
+
+.viewer-container {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute; 
+}
+
+.viewer-header {
+  background-color: var(--dark-color);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.viewer-header h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.viewer-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Highlight control button on hover */
+.control-btn:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* Style for active control button */
+.control-btn.active {
+  background-color: var(--primary-color);
+}
+
+.viewer-container {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Info Panel */
+.info-panel {
+  background-color: white;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.product-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-title {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: var(--dark-color);
+}
+
+.product-subtitle {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--highlight-color);
+  margin-bottom: 15px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #555;
+}
+
+.btn-outline:hover {
+  background-color: #f5f5f5;
+}
+
+.product-details {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: var(--dark-color);
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.feature-list {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.feature-list li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.feature-list i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.selected-part-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px;
+  max-width: 400px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.selected-part-info h4 {
+  margin-bottom: 5px;
+  color: var(--dark-color);
+}
+
+.selected-part-info p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  
+  .info-panel {
+    max-height: 300px;
+  }
+}
