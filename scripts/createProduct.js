@@ -23,63 +23,93 @@ export function createChair() {
 
   // Metal material for legs
   const metalMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0xA020F0, 
+    color: 0x3E2723, 
     roughness: 0.7,
     metalness: 0.5,
     emissive: 0x1A0033, 
-    emissiveIntensity: 0.1
-  });
-  
-  // Wood material for seat and backrest
-  const woodMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x00CED1, 
-    roughness: 0.7,
-    metalness: 0.1,
-    bumpScale: 0.05 
+    emissiveIntensity: 0.1,
+    bumpScale: 0.05 // slight bump for texture feel
   });
 
-  // Create four chair legs
-  const legGeo = new THREE.CylinderGeometry(0.12, 0.12, legHeight, 16);
+  // Wood material for seat and backrest
+  const woodMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0xA0522D, 
+    roughness: 0.7,
+    metalness: 0.1,
+    bumpScale: 0.1 // subtle bump effect
+  });
+
+  // Add edge lines to visually separate surfaces
+  const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x111111, linewidth: 1 });
+
+  // Create four chair legs (tapered for style)
+  const legGeo = new THREE.CylinderGeometry(0.12, 0.07, legHeight, 16);
   const legPositions = [
-    { x: seatWidth/2 - 0.1, z: seatDepth/2 - 0.1 },
-    { x: -seatWidth/2 + 0.1, z: seatDepth/2 - 0.1 },
-    { x: seatWidth/2 - 0.1, z: -seatDepth/2 + 0.1 },
-    { x: -seatWidth/2 + 0.1, z: -seatDepth/2 + 0.1 }
+    { x: seatWidth / 2 - 0.1, z: seatDepth / 2 - 0.1 },
+    { x: -seatWidth / 2 + 0.1, z: seatDepth / 2 - 0.1 },
+    { x: seatWidth / 2 - 0.1, z: -seatDepth / 2 + 0.1 },
+    { x: -seatWidth / 2 + 0.1, z: -seatDepth / 2 + 0.1 }
   ];
   legPositions.forEach((pos, index) => {
     const leg = new THREE.Mesh(legGeo, metalMaterial);
-    leg.position.set(pos.x, legHeight/2 - 0.5, pos.z);
+    leg.position.set(pos.x, legHeight / 2 - 0.5, pos.z);
     leg.castShadow = true;
     leg.userData = {
       name: `Chair Leg ${index + 1}`,
-      description: 'Sturdy steel legs with rubber caps for floor protection',
+      description: 'Stylish tapered steel legs',
       originalColor: metalMaterial.color.clone()
     };
     chair.add(leg);
   });
 
-  // Create seat
-  const seatGeo = new THREE.BoxGeometry(seatWidth, seatHeight, seatDepth);
+  // Create contoured seat (slightly sloped front)
+  let seatGeo = new THREE.BoxGeometry(seatWidth, seatHeight, seatDepth);
+  seatGeo = seatGeo.toNonIndexed();
   const seat = new THREE.Mesh(seatGeo, woodMaterial);
-  seat.position.set(0, legHeight + seatHeight/2 - 0.5, 0);
+  const seatPos = seat.geometry.attributes.position;
+
+  for (let i = 0; i < seatPos.count; i++) {
+    const z = seatPos.getZ(i);
+    const y = seatPos.getY(i);
+    // Pull front top corners slightly downward
+    if (z > 0 && y > 0) {
+      seatPos.setY(i, y - 0.1);
+    }
+  }
+
+  seat.geometry.computeVertexNormals();
+  seat.position.set(0, legHeight + seatHeight / 2 - 0.5, 0);
   seat.castShadow = true;
   seat.receiveShadow = true;
   seat.userData = {
     name: 'Seat',
-    description: 'Premium hardwood with comfortable cushioning',
+    description: 'Contoured hardwood seat for comfort',
     originalColor: woodMaterial.color.clone()
   };
   chair.add(seat);
 
-  // Create backrest
-  const backGeo = new THREE.BoxGeometry(seatWidth, backrestHeight, 0.25);
+  // Create curved backrest (angled and bent backward)
+  let backGeo = new THREE.BoxGeometry(seatWidth, backrestHeight, 0.25);
+  backGeo = backGeo.toNonIndexed();
   const backrest = new THREE.Mesh(backGeo, woodMaterial);
-  backrest.position.set(0, legHeight + seatHeight + backrestHeight/2 - 0.8, -seatDepth/2 + 0.1);
-  backrest.rotation.x = -0.1;
+  const backPos = backrest.geometry.attributes.position;
+
+  for (let i = 0; i < backPos.count; i++) {
+    const y = backPos.getY(i);
+    const z = backPos.getZ(i);
+    // Slight backward curve at top
+    if (y > 0.8) {
+      backPos.setZ(i, z - 0.2);
+    }
+  }
+
+  backrest.geometry.computeVertexNormals();
+  backrest.position.set(0, legHeight + seatHeight + backrestHeight / 2 - 0.8, -seatDepth / 2 + 0.1);
+  backrest.rotation.x = -0.12;
   backrest.castShadow = true;
   backrest.userData = {
     name: 'Backrest',
-    description: 'Ergonomic design with lumbar support',
+    description: 'Stylish angled backrest with ergonomic curve',
     originalColor: woodMaterial.color.clone()
   };
   chair.add(backrest);

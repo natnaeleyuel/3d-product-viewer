@@ -8,6 +8,8 @@
  * @returns {void}
 */
 
+import * as THREE from 'three';
+
 export function setupLights(scene) {
   // Add soft white ambient light for general illumination
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
@@ -17,6 +19,14 @@ export function setupLights(scene) {
   const keyLight = new THREE.DirectionalLight(0xfff4e6, 1.2);
   keyLight.position.set(5, 10, 7);
   keyLight.castShadow = true;
+
+  // Improved shadow quality
+  keyLight.shadow.mapSize.width = 1024;
+  keyLight.shadow.mapSize.height = 1024;
+  keyLight.shadow.camera.near = 0.5;
+  keyLight.shadow.camera.far = 50;
+  keyLight.shadow.bias = -0.0001;
+
   scene.add(keyLight);
 
   // Add a weaker fill light to soften shadows
