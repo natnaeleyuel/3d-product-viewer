@@ -2,7 +2,7 @@
 # 🪑 3D Product Viewer - Interactive Chair Configurator
 
 ## 📸 Preview
-![image](https://github.com/user-attachments/assets/8332ac0c-4e5e-4665-a8dd-f8d77941f31b)
+![image](https://github.com/user-attachments/assets/20394067-ad1c-4e4f-8c5c-35c76e0f24b0)
 
 A responsive Three.js application that demonstrates interactive 3D product visualization using basic geometries. Built as part of a computer graphics assignment.
 
@@ -90,4 +90,4 @@ graph TD
 - [ ] AR preview mode
 - [ ] Custom color picker
 
-**Developed by Natnael Eyuel**  
+## **Developed by Natnael Eyuel**
